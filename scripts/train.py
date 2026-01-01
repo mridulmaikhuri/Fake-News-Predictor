@@ -5,12 +5,17 @@ import joblib as jb
 from pathlib import Path
 from dataLoader import loadData
 from preprocess import preprocess_text
+import logging
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-DATA_DIR = BASE_DIR/'data'
+MODEL_DIR = BASE_DIR/"models"
+MODEL_PATH = MODEL_DIR/"pipeline.pkl"
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(message)s"
+)
 
-def train():
-    X_train, X_test, y_train, y_test = loadData()
+def build_pipeline():
     pipeline = Pipeline([
         (
             'tfidf', 
@@ -30,18 +35,20 @@ def train():
             )
         ),
     ])
+    return pipeline
 
-    print ("Pipeline defined. Starting model training...")
+def train():
+    X_train, X_test, y_train, y_test = loadData()
+
+    pipeline = build_pipeline()
+
+    logging.info("Starting model training...")
     pipeline.fit(X_train, y_train)
-    print ("Model training completed. Storing it in .pkl file for future use...")
+    logging.info("Training completed...")
 
-    MODEL_DIR = BASE_DIR/"models"
     MODEL_DIR.mkdir(exist_ok=True)
-
-    MODEL_PATH = MODEL_DIR/"pipeline.pkl"
     jb.dump(pipeline, MODEL_PATH)
-
-    print(f"Model stored successfully at {MODEL_PATH}")
+    logging.info(f"Model saved at: {MODEL_PATH}")
 
 if __name__ == '__main__':
     train()

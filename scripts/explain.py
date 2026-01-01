@@ -3,7 +3,6 @@ from pathlib import Path
 from preprocess import preprocess_text
 import joblib as jb
 import pandas as pd
-from lime.lime_text import LimeTextExplainer
 import logging
 import shap
 
