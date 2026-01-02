@@ -1,6 +1,6 @@
-from dataLoader import loadData
+from scripts.dataLoader import loadData
 from pathlib import Path
-from preprocess import preprocess_text
+from scripts.preprocess import preprocess_text
 import joblib as jb
 import pandas as pd
 import logging

@@ -1,9 +1,9 @@
 import joblib as jb
 from pathlib import Path
-from dataLoader import loadData
+from scripts.dataLoader import loadData
 from sklearn.metrics import accuracy_score, classification_report, ConfusionMatrixDisplay, confusion_matrix
 import matplotlib.pyplot as plt
-from preprocess import preprocess_text
+from scripts.preprocess import preprocess_text
 import logging
 
 BASE_DIR = Path(__file__).resolve().parent.parent

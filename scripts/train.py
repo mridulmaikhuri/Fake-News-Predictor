@@ -3,8 +3,8 @@ from sklearn.pipeline import Pipeline
 from sklearn.linear_model import LogisticRegression
 import joblib as jb
 from pathlib import Path
-from dataLoader import loadData
-from preprocess import preprocess_text
+from scripts.dataLoader import loadData
+from scripts.preprocess import preprocess_text
 import logging
 
 BASE_DIR = Path(__file__).resolve().parent.parent
